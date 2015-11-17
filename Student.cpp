@@ -9,8 +9,8 @@ Student::Student(std::string name_in, std::string UID_in, std::string email_in, 
 	name = name_in;
 	UID = UID_in;
 	email = email_in;
-	essay1Grade = essay2Grade_in;
-	essay2Grade = essay1Grade_in,
+	essay1Grade = essay1Grade_in;
+	essay2Grade = essay2Grade_in,
 	termProjGrade = termProjGrade_in;
 }
 
@@ -19,38 +19,38 @@ std::string Student::getName() const{
 }
 
 void Student::setName(std::string toSet_name){
-	toSet_name = name;
+	name = toSet_name;
 }
 
 std::string Student::getUID() const{
 	return UID;
 }
 void Student::setUID(std::string to_set){
-	to_set = UID;
+	UID = to_set;
 }
 std::string Student::getEmail() const{
 	return email;
 }
 void Student::setEmail(std::string to_set){
-	to_set = email;
+	email = to_set;
 }
 int Student::getEssay1Grade() const{
-	return essay2Grade;
-}
-void Student::setEssay1Grade(int to_set){
-	to_set = essay2Grade;
-}
-int Student::getEssay2Grade() const{
 	return essay1Grade;
 }
+void Student::setEssay1Grade(int to_set){
+	essay1Grade = to_set;
+}
+int Student::getEssay2Grade() const{
+	return essay2Grade;
+}
 void Student::setEssay2Grade(int to_set){
-	to_set = essay1Grade;
+	essay2Grade = to_set;
 }
 int Student::getTermProjGrade() const{
 	return termProjGrade;
 }
 void Student::setTermProjGrade(int to_set){
-	to_set = termProjGrade;
+	termProjGrade = to_set;
 }
 
 //returns a string of students info
@@ -66,27 +66,27 @@ bool Student::updateInfo(std::string prop, std::string val)
 {
 	if (prop == "name")
 	{
-		setName(prop);
+		setName(val);
 	}
 	else if (prop == "id" || prop == "uid")
 	{
-		setUID(prop);
+		setUID(val);
 	}
 	else if (prop == "email")
 	{
-		setEmail(prop);
+		setEmail(val);
 	}
 	else if (prop == "essay1grade")
 	{
-		setEssay1Grade(std::stoi(prop));
+		setEssay1Grade(std::stoi(val));
 	}
 	else if (prop == "essay2grade")
 	{
-		setEssay2Grade(std::stoi(prop));
+		setEssay2Grade(std::stoi(val));
 	}
 	else if (prop == "termprojgrade")
 	{
-		setTermProjGrade(std::stoi(prop));
+		setTermProjGrade(std::stoi(val));
 	}
 	else
 	{
@@ -101,9 +101,9 @@ bool Student::isValidStudent()
 {
 	bool valid = true;
 
-	if (getEssay1Grade() > 4 && getEssay1Grade() < 0 && getEssay2Grade() > 4 && getEssay2Grade() < 0 && 
-		getTermProjGrade() > 4 && getTermProjGrade() < 0 && getName().size() > 0 && getUID().size() > 10 &&
-		getEmail().size() > 40)	
+	if (getEssay1Grade() > 4 || getEssay1Grade() < 0 || getEssay2Grade() > 4 || getEssay2Grade() < 0 || 
+		getTermProjGrade() > 4 || getTermProjGrade() < 0 || getName().size() > 40 || getUID().size() > 10 ||
+		getEmail().size() > 27)	
 	{
 		valid = false;
 	}
