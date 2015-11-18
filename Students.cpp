@@ -29,11 +29,8 @@ void Students::deleteStudent(Student out_stud){
 	
 	std::vector<Student>::iterator itemItr; 
 
-	//searches student list till it find a match an returns an iterator
-	itemItr = std::find(StudentList.begin(), StudentList.end(), out_stud);
-	if (itemItr != StudentList.end()) {
-		StudentList.push_back(*itemItr);
-	}
+	//searches student list till it find a match an returns an iterator --Changed to all matches in debugging
+	StudentList.erase(std::remove(StudentList.begin(), StudentList.end(), out_stud));
 }
 
 //loads students into the studentList
@@ -78,7 +75,7 @@ std::vector<Student> Students::searchStudents(std::string search_by_string, std:
 	{
 		search_by = ID;
 	}
-	else if (search_by_string == "id")
+	else if (search_by_string == "uid")
 	{
 		search_by = name;
 	}
@@ -129,7 +126,7 @@ void Students::printAllStudents()
 {
 	std::cout << std::setw(10) << "Name" << std::setw(10) << "UID" << std::setw(20) << "Email" << 
 		std::setw(9) << "Essay 1" << std::setw(9) << "Essay 2" << std::setw(9) << "Project" << std::endl;
-	for (int i = 0; i < StudentList.size() + 1; i++)
+	for (int i = 0; i < StudentList.size(); i++)
 	{
 		std::cout << std::setw(10) << StudentList[i].getName() << std::setw(10) << StudentList[i].getUID() << std::setw(20) << StudentList[i].getEmail() <<
 			std::setw(9) << StudentList[i].getEssay1Grade() << std::setw(9) << StudentList[i].getEssay2Grade() << std::setw(9) << StudentList[i].getTermProjGrade() << std::endl;
