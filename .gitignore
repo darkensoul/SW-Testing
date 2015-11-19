@@ -228,3 +228,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+Debugging Project/Debugging Project.vcxproj

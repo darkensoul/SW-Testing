@@ -4,7 +4,7 @@
 //save students into the data base file so that the it can be uploaded to the program later
 void fileIO::saveStudents(std::vector<Student> studList){
 	std::ofstream myfile;
-	myfile.open("Database.txt");
+	myfile.open("../Database.txt");
 
 	for (std::vector<Student>::size_type i = 0; i < studList.size()-1; i++) {
 		Student stud = studList[i];
@@ -20,7 +20,7 @@ void fileIO::saveStudents(std::vector<Student> studList){
 // load students into the Students objects 
 std::vector<Student> fileIO::loadStudents(){
 	std::vector<Student> to_return;
-	std::ifstream file("database.txt");
+	std::ifstream file("../Database.txt");
 	std::string line;
 
 	while (std::getline(file, line)){
@@ -34,7 +34,7 @@ std::vector<Student> fileIO::loadStudents(){
 void fileIO::clearDB(){
 	/* http://www.cplusplus.com/reference/fstream/ofstream/open/ */
 	std::ofstream ofs;
-	ofs.open("database.txt", std::ofstream::out | std::ofstream::trunc);
+	ofs.open("../Database.txt", std::ofstream::out | std::ofstream::trunc);
 	ofs.close();
 }
 
