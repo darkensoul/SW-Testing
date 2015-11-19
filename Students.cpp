@@ -101,7 +101,7 @@ std::vector<Student> Students::searchStudents(std::string(Student::* func)() con
 	std::vector<Student>::iterator it;
 
 	for (int i = 0; i < StudentList.size(); ++i){
-		while ((StudentList[i].*func)() == searchTerm){
+		while ((StudentList[i].*func)() == searchTerm){ //This is an error but I have no idea what it is trying to do
 			to_return.insert(it+i, StudentList[i]);
 		}
 	}
