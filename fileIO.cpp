@@ -4,13 +4,13 @@
 //save students into the data base file so that the it can be uploaded to the program later
 void fileIO::saveStudents(std::vector<Student> studList){
 	std::ofstream myfile;
-	myfile.open("../Database.txt");
+	myfile.open("../Database.txt"); // possible bug 
 
-	for (std::vector<Student>::size_type i = 0; i < studList.size()-1; i++) {
+	for (std::vector<Student>::size_type i = 0; i < studList.size(); i++) { //fixed
 		Student stud = studList[i];
 		
 		myfile << stud.getName() << ", " << stud.getUID() << ", " << stud.getEmail() << ", " << stud.getEssay1Grade() << ", " <<
-			stud.getEssay2Grade() << ", " << stud.getTermProjGrade() << "\n";
+			stud.getEssay2Grade() << ", " << stud.getTermProjGrade() << "\n"; //NOTE SPACES MAY CAUSE SOME KIND OF ERROR LATER ON
 
 	}
 
@@ -42,12 +42,12 @@ void fileIO::clearDB(){
 Student fileIO::dbEntryToStudent(std::string line){
 	Student to_return;
 
-	std::vector<std::string> studInfo = split(line, ' ');
+	std::vector<std::string> studInfo = split(line, ','); // they write to db separated by commas
 
 	to_return.setName(studInfo[0]);
 	to_return.setUID(studInfo[1]);
 	to_return.setEmail(studInfo[2]);
-	to_return.setEssay1Grade(stoi(studInfo[3]));
+	to_return.setEssay1Grade(stoi(studInfo[3])); //might not need stoi because already in vector as string
 	to_return.setEssay2Grade(stoi(studInfo[4]));
 	to_return.setTermProjGrade(stoi(studInfo[5]));
 
