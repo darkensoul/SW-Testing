@@ -73,11 +73,11 @@ std::vector<Student> Students::searchStudents(std::string search_by_string, std:
 
 	if (search_by_string == "name")
 	{
-		search_by = ID;
+		search_by = name;
 	}
 	else if (search_by_string == "uid")
 	{
-		search_by = name;
+		search_by = ID;
 	}
 	else if (search_by_string == "email")
 	{
@@ -101,7 +101,7 @@ std::vector<Student> Students::searchStudents(std::string(Student::* func)() con
 	std::vector<Student>::iterator it;
 
 	for (int i = 0; i < StudentList.size(); ++i){
-		while ((StudentList[i].*func)() == searchTerm){
+		while ((StudentList[i].*func)() == searchTerm){ //This is an error but I have no idea what it is trying to do
 			to_return.insert(it+i, StudentList[i]);
 		}
 	}

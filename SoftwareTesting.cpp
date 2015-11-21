@@ -99,27 +99,29 @@ void ParseCommand(Command cmd, std::vector<std::string> payload)
 			std::vector<std::string> commands = fileIO::split(payload[0], '=');
 
 			//make sure the format  is correct
-			if (commands.size() != 2)
+			if (commands.size() < 2)
 			{
 				printMessage("Search argument recieved invalid. Format should be email=bob@gmail.com.");
 			}
-
-			Students queryList = Students(students.searchStudents(commands[0],commands[1]));
-
-			//iterate through rest of the arguments
-			for (int i = 1; i < payload.size(); i++)
+			else
 			{
-				std::vector<std::string> commands = fileIO::split(payload[i], '=');
+				Students queryList = Students(students.searchStudents(commands[0],commands[1]));
 
-				if (commands.size() != 2)
+				//iterate through rest of the arguments
+				for (int i = 1; i < payload.size(); i++)
 				{
-					printMessage("Search argument recieved invalid. Format should be email=bob@gmail.com.");
-				}
+					std::vector<std::string> commands = fileIO::split(payload[i], '=');
 
-				queryList = queryList.searchStudents(commands[0], commands[1]);
-			}
+					if (commands.size() != 2)
+					{
+						printMessage("Search argument recieved invalid. Format should be email=bob@gmail.com.");
+					}
+
+					queryList = queryList.searchStudents(commands[0], commands[1]);
+				}
 			
-			queryList.printAllStudents();
+				queryList.printAllStudents();
+			}
 		}
 	}
 
